@@ -30,7 +30,7 @@ namespace CoffeeShop.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet] /// GET ALL
         public async Task<IActionResult> Get()
         {
             using (SqlConnection conn = Connection)
@@ -60,7 +60,7 @@ namespace CoffeeShop.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "GetCoffee")]
+        [HttpGet("{id}", Name = "GetCoffee")] /// GET ONE
         public async Task<IActionResult> Get([FromRoute] int id)
         {
             using (SqlConnection conn = Connection)
@@ -94,7 +94,7 @@ namespace CoffeeShop.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost] ///// POST
         public async Task<IActionResult> Post([FromBody] Coffee coffee)
         {
             using (SqlConnection conn = Connection)
@@ -115,7 +115,7 @@ namespace CoffeeShop.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}")] /// PUT
         public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Coffee coffee)
         {
             try
@@ -155,7 +155,7 @@ namespace CoffeeShop.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] /// DELETE
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try
@@ -190,7 +190,7 @@ namespace CoffeeShop.Controllers
             }
         }
 
-        private bool CoffeeExists(int id)
+        private bool CoffeeExists(int id) // HELPER FUNCTION TO LOOK FOR ID
         {
             using (SqlConnection conn = Connection)
             {
@@ -204,7 +204,7 @@ namespace CoffeeShop.Controllers
                     cmd.Parameters.Add(new SqlParameter("@id", id));
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    return reader.Read();
+                    return reader.Read(); // FOUND (TRUE) DIDNT FIND (FALSE)
                 }
             }
         }
